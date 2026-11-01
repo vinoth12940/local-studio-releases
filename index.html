@@ -10,68 +10,157 @@
 :root{--bg:#faf8f5;--fg:#1c1917;--muted:#6b645c;--card:#fff;--line:#e7e2db;--brand:#c2410c;--brand-fg:#fff}
 @media (prefers-color-scheme:dark){:root{--bg:#161412;--fg:#f4f1ec;--muted:#a39b91;--card:#201d1a;--line:#33302b;--brand:#ea6a2c;--brand-fg:#1a0d05}}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif}
-main{max-width:960px;margin:0 auto;padding:56px 16px 72px}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif}
+.topbar{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar .in{max-width:960px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:14px}
+.topbar img{width:30px;height:30px;border-radius:7px}
+.topbar b{font-size:1.02rem}
+.topbar nav{margin-left:auto;display:flex;gap:16px;font-size:.92rem}
+.topbar nav a{color:var(--muted);text-decoration:none}
+.topbar nav a:hover{color:var(--fg)}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-fg);font-weight:600;text-decoration:none;padding:10px 18px;border-radius:10px;font-size:.95rem;white-space:nowrap}
+.btn:hover{filter:brightness(1.08)}
+.btn.big{padding:15px 30px;font-size:1.1rem;border-radius:13px}
+main{max-width:960px;margin:0 auto;padding:48px 16px 72px}
 header{text-align:center}
 header img.logo{width:104px;height:104px;border-radius:24px}
 h1{font-size:clamp(2rem,6vw,3rem);margin:16px 0 8px;letter-spacing:-.02em}
-.lead{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 auto 28px}
-.btn{display:inline-block;background:var(--brand);color:var(--brand-fg);font-weight:600;text-decoration:none;padding:14px 28px;border-radius:12px;font-size:1.05rem}
-.btn:hover{filter:brightness(1.08)}
+.lead{font-size:1.15rem;color:var(--muted);max-width:640px;margin:0 auto 28px}
 .meta{color:var(--muted);font-size:.9rem;margin-top:12px}
-.meta code{font-size:.8rem;word-break:break-all}
-.hero{margin:44px 0 12px}
-.hero img,.grid img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:20px}
+.meta a{color:var(--muted)}
+.badges{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.badge{border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:.82rem;color:var(--muted)}
+.hero{margin:40px 0 8px}
+img.shot,.card img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
+h2{margin:60px 0 14px;font-size:1.55rem;letter-spacing:-.01em}
+h3{margin:22px 0 6px;font-size:1.1rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px;margin-top:16px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
 .card h3{margin:12px 0 4px}
 .card p{margin:0;color:var(--muted);font-size:.95rem}
-h2{margin:56px 0 12px;font-size:1.5rem}
-ol,ul{padding-left:1.2rem}
-li{margin:6px 0}
-footer{margin-top:56px;color:var(--muted);font-size:.9rem;text-align:center;border-top:1px solid var(--line);padding-top:20px}
+.why li,.list li{margin:8px 0}
+ul,ol{padding-left:1.25rem}
+table{border-collapse:collapse;width:100%;margin:10px 0;font-size:.95rem}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line)}
+th{color:var(--muted);font-weight:600}
+kbd{font:.85em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--card);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 6px}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+.cta{text-align:center;margin:56px 0 0;padding:36px 16px;background:var(--card);border:1px solid var(--line);border-radius:18px}
+.cta h2{margin:0 0 12px}
+footer{margin-top:48px;color:var(--muted);font-size:.9rem;text-align:center;border-top:1px solid var(--line);padding-top:20px}
 a{color:var(--brand)}
+@media (max-width:640px){.topbar nav{display:none}.topbar .btn{margin-left:auto}}
 </style>
 </head>
 <body>
+<div class="topbar"><div class="in">
+  <img src="assets/logo.png" alt=""><b>Local Studio</b>
+  <nav><a href="#what">What it does</a><a href="#install">Install</a><a href="#shortcuts">Shortcuts</a><a href="#privacy">Privacy</a></nav>
+  <a class="btn dl" href="https://github.com/vinoth12940/local-studio-releases/releases/latest">Download for Mac</a>
+</div></div>
 <main>
 <header>
   <img class="logo" src="assets/logo.png" alt="Local Studio app icon">
   <h1>Local Studio</h1>
-  <p class="lead">A private AI studio that runs on your Mac. Chat, code, talk, search your files and make images with open models. Your chats and files stay on this Mac.</p>
-  <a id="dl" class="btn" href="https://github.com/vinoth12940/local-studio-releases/releases/latest">Download for Mac</a>
-  <div class="meta" id="meta">Apple Silicon (M1 or newer) · macOS 14 or later · signed and notarized by Apple</div>
+  <p class="lead"><b>A private AI studio that runs on your Mac.</b> Chat, code, talk, search your files and make images with open models. Your chats and files stay on this Mac.</p>
+  <a class="btn big dl" href="https://github.com/vinoth12940/local-studio-releases/releases/latest">&#11015;&#65039; Download for Mac</a>
+  <div class="meta" id="meta">Opens the latest release page &middot; Apple Silicon (M1 or newer) &middot; macOS 14 or later</div>
+  <div class="badges"><span class="badge">macOS 14+</span><span class="badge">Apple Silicon</span><span class="badge">Signed &amp; notarized by Apple</span><span class="badge">100% on-device</span></div>
 </header>
 
 <div class="hero">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/chat-dark.jpg">
-    <img src="assets/chat-light.jpg" alt="Local Studio answering a question from the user's own files">
+    <img class="shot" src="assets/chat-light.jpg" alt="Local Studio answering a question from the user's own files: it searched them, read a warranty PDF and replied with the dates in a table.">
   </picture>
 </div>
 
-<h2>What it does</h2>
+<h2>Why Local Studio</h2>
+<ul class="why">
+  <li><b>Private by design.</b> Models run on your Mac. Conversations, documents, the file index and voice audio never leave it. The app itself loads nothing from the internet.</li>
+  <li><b>Fast on Apple Silicon.</b> MLX models with DFlash and DSpark speculative decoding run 2&ndash;3&times; faster than plain decoding. Any GGUF model runs on llama.cpp.</li>
+  <li><b>It does the work.</b> Every chat is an agent. It can search the web, read your documents, edit code and run your tests, asking before anything changes.</li>
+  <li><b>One app.</b> Chat, a coding workbench, voice, file search, computer use and image generation share one model library.</li>
+</ul>
+
+<h2 id="what">What it does</h2>
 <div class="grid">
-  <div class="card"><img src="assets/code.jpg" alt="The Code view" loading="lazy"><h3>Code</h3><p>An explorer, editor and real terminal beside an agent that edits files with diff previews, one-click Undo and runs your tests.</p></div>
-  <div class="card"><img src="assets/voice.jpg" alt="The Voice view" loading="lazy"><h3>Voice</h3><p>Talk hands-free and interrupt any time. Speech is recognized and spoken on this Mac.</p></div>
-  <div class="card"><img src="assets/files.jpg" alt="Search your files" loading="lazy"><h3>Search your files</h3><p>Describe what you're looking for. It finds documents, PDFs, scans, photos and more.</p></div>
-  <div class="card"><img src="assets/images.jpg" alt="The Images view" loading="lazy"><h3>Images</h3><p>Text-to-image with live progress, seeds and a library.</p></div>
+  <div class="card"><img src="assets/code.jpg" alt="The Code view: file explorer, editor, terminal and the agent fixing a failing test" loading="lazy"><h3>Code</h3><p>An explorer, editor and real terminal beside the agent, which edits files with diff previews and one-click Undo, runs your tests, and has <code>/review</code>, <code>/test</code> and <code>/commit</code>.</p></div>
+  <div class="card"><img src="assets/voice.jpg" alt="The Voice view speaking an answer, with the transcript and voice picker" loading="lazy"><h3>Voice <small style="color:var(--muted);font-weight:400">(preview)</small></h3><p>Talk hands-free and interrupt any time. The microphone is echo-cancelled, there are 13 voices, and speech is recognized and spoken on this Mac.</p></div>
+  <div class="card"><img src="assets/files.jpg" alt="Search finding a warranty PDF with the matching passage highlighted" loading="lazy"><h3>Search your files</h3><p>Describe what you're looking for. It finds documents, PDFs and scans, photos, voice memos and videos, and opens the page where it matched.</p></div>
+  <div class="card"><img src="assets/images.jpg" alt="The Images view with generated pictures in the library" loading="lazy"><h3>Images</h3><p>Text-to-image with Qwen-Image 2.1, Z-Image Turbo or FLUX.2 Klein, with live progress, seeds and a library.</p></div>
+</div>
+<ul class="list" style="margin-top:22px">
+  <li><b>Chat</b> with thinking you can open, live tool steps, attachments (images, PDFs, Word, Excel, code), and speed shown under every reply.</li>
+  <li><b>Your documents in chat.</b> Turn on <b>My files</b> and it answers from your own documents, naming the ones it used.</li>
+  <li><b>Computer use</b> <i>(experimental)</i>. It drives an isolated Chrome or your Mac apps, with per-app permissions and an approval for every risky step.</li>
+  <li><b>Model library.</b> One-click downloads of curated models, plus any MLX or GGUF model from Hugging Face.</li>
+  <li><b>Local API.</b> OpenAI- and Anthropic-compatible endpoints at <code>http://127.0.0.1:8080/v1</code> for your own scripts and apps.</li>
+</ul>
+<p style="margin-top:18px"><img class="shot" src="assets/models.jpg" alt="The model library" loading="lazy"></p>
+
+<h2 id="install">Install</h2>
+<ol class="list">
+  <li><a class="dl" href="https://github.com/vinoth12940/local-studio-releases/releases/latest">Download the DMG</a> from the latest release.</li>
+  <li>Open it and drag <b>Local Studio</b> to <b>Applications</b>.</li>
+  <li>Open Local Studio and click <b>Install</b>. It sets up the engines: about 3 GB and a few minutes, with no Terminal, Homebrew or Xcode.</li>
+  <li>Pick a model. Local Studio suggests ones that fit your Mac's memory; chat unlocks when the download finishes.</li>
+</ol>
+<p>The DMG is signed with a Developer ID and notarized by Apple, so it opens without a warning. Each release lists its SHA-256.</p>
+<h3>You need</h3>
+<ul class="list">
+  <li><b>Mac:</b> Apple Silicon (M1 or newer), macOS 14 Sonoma or later.</li>
+  <li><b>Memory:</b> 16 GB for small models, 32 GB or more for the larger ones; 48 GB is recommended.</li>
+  <li><b>Disk:</b> about 3 GB for the engines, plus 3&ndash;25 GB per model.</li>
+  <li><b>Internet:</b> for setup, model downloads and web search. Everything else works offline.</li>
+</ul>
+
+<h3>Optional features</h3>
+<ul class="list">
+  <li><b>Search your files:</b> Settings &rarr; Search. It downloads its model (1.3 GB) and components (about 1 GB) once, then indexes in the background.</li>
+  <li><b>Computer use:</b> Settings &rarr; Computer access. It needs <a href="https://github.com/trycua/cua">CuaDriver</a> 0.28.2 or newer, with its Accessibility and Screen Recording permissions, and Google Chrome.</li>
+  <li><b>Voice</b> <i>(preview)</i>: Settings &rarr; Voice and web answers. The same section turns on the live-facts check for voice and faster web answers.</li>
+</ul>
+
+<h2 id="shortcuts">Handy shortcuts</h2>
+<table>
+  <tr><th>Keys</th><th>Does</th></tr>
+  <tr><td><kbd>&#8679;</kbd> <kbd>&#8984;</kbd> <kbd>O</kbd></td><td>New chat</td></tr>
+  <tr><td><kbd>1</kbd> <kbd>2</kbd> <kbd>3</kbd></td><td>Answer an approval: yes, yes for this chat, no and say what to do instead</td></tr>
+  <tr><td><kbd>Esc</kbd></td><td>Stop a reply, or decline an approval</td></tr>
+  <tr><td><kbd>&#8679;</kbd> <kbd>Tab</kbd></td><td>Accept edits inside the workspace until you quit</td></tr>
+  <tr><td><kbd>@</kbd> and <kbd>/</kbd></td><td>Mention a file or folder; run a command such as <code>/review</code> or <code>/compact</code></td></tr>
+</table>
+
+<h2 id="privacy">Privacy</h2>
+<p><b>Stays on your Mac:</b> the models, your conversations, attached files, the file index and its previews, and voice audio (which is never saved). The interface is bundled with the app, fonts included.</p>
+<p><b>What goes out, and only when needed:</b></p>
+<ul class="list">
+  <li>Setup downloads the engines from PyPI, GitHub and astral.sh (uv), and models come from Hugging Face.</li>
+  <li>Web search queries go to DuckDuckGo, and pages are fetched when the model reads them.</li>
+  <li>Computer-use tasks browse the sites you ask for. CuaDriver's own telemetry is on by default; Settings &rarr; Computer access turns it off.</li>
+</ul>
+<p><b>Safeguards:</b></p>
+<ul class="list">
+  <li>Every server listens on <code>127.0.0.1</code> only.</li>
+  <li>The file-search service also requires a private token, so other programs on the Mac can't read your index.</li>
+  <li>Edits, commands and risky computer actions wait for your approval, and file edits can be undone.</li>
+</ul>
+<p>Found a security problem? Please report it privately through <a href="https://github.com/vinoth12940/local-studio-releases/security/advisories/new">a security advisory</a>, not a public issue.</p>
+
+<h2>Credits and licenses</h2>
+<p>Local Studio builds on <a href="https://github.com/ARahim3/mlx-dspark">mlx-dspark</a>, <a href="https://github.com/ml-explore/mlx">MLX</a>, <a href="https://github.com/Blaizzy/mlx-vlm">mlx-vlm</a>, <a href="https://github.com/filipstrand/mflux">mflux</a>, <a href="https://github.com/ggml-org/llama.cpp">llama.cpp</a>, <a href="https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3">Parakeet</a> and Phonon. These are installed separately under their own licenses.</p>
+<p><b>Model licenses.</b> Model weights come from Hugging Face under each model's license. Check the model card before commercial use; some, such as Qwen-Image 2.1, are described as research or non-commercial.</p>
+
+<div class="cta">
+  <h2>Get Local Studio</h2>
+  <a class="btn big dl" href="https://github.com/vinoth12940/local-studio-releases/releases/latest">&#11015;&#65039; Download for Mac</a>
+  <div class="meta">Each release lists what changed and its SHA-256.</div>
 </div>
 
-<h2>Install</h2>
-<ol>
-  <li>Download the DMG above and open it.</li>
-  <li>Drag <b>Local Studio</b> to <b>Applications</b>.</li>
-  <li>Open it and click <b>Install</b>. It sets up the engines: about 3 GB and a few minutes, with no Terminal or Homebrew.</li>
-  <li>Pick a model. Local Studio suggests ones that fit your Mac's memory.</li>
-</ol>
-<p><b>You need:</b> an Apple Silicon Mac, macOS 14 Sonoma or later, 16 GB of memory for small models (32 GB or more for larger ones), and about 3 GB of disk plus 3–25 GB per model.</p>
-
-<h2>Private by design</h2>
-<p>Models run on your Mac. Conversations, documents, the file index and voice audio never leave it.</p>
-
 <footer>
-  <a href="https://github.com/vinoth12940/local-studio-releases/releases">All releases</a> ·
+  <a href="https://github.com/vinoth12940/local-studio-releases/releases">All releases</a> &middot;
   <a href="https://github.com/vinoth12940/local-studio-releases/issues">Report a problem</a>
 </footer>
 </main>
@@ -81,13 +170,15 @@ a{color:var(--brand)}
   fetch("https://api.github.com/repos/"+repo+"/releases/latest",{headers:{Accept:"application/vnd.github+json"}})
     .then(function(r){return r.ok?r.json():null})
     .then(function(rel){
-      if(!rel||!rel.assets)return;
-      var dmg=rel.assets.filter(function(a){return /\.dmg$/.test(a.name)})[0];
-      if(!dmg)return;
-      document.getElementById("dl").href=dmg.browser_download_url;
-      document.getElementById("dl").textContent="Download "+rel.tag_name+" for Mac";
-      var mb=Math.round(dmg.size/1048576*10)/10;
-      document.getElementById("meta").textContent=dmg.name+" · "+mb+" MB · Apple Silicon · macOS 14 or later · signed and notarized by Apple";
+      if(!rel||!rel.html_url)return;
+      var a=document.querySelectorAll("a.dl");
+      for(var i=0;i<a.length;i++)a[i].href=rel.html_url;
+      var dmg=(rel.assets||[]).filter(function(x){return /\.dmg$/.test(x.name)})[0];
+      var m=document.getElementById("meta");
+      if(dmg){
+        var mb=Math.round(dmg.size/1048576*10)/10;
+        m.innerHTML=rel.tag_name+" &middot; "+mb+" MB &middot; Apple Silicon &middot; macOS 14 or later &middot; <a href=\""+dmg.browser_download_url+"\">direct .dmg</a>";
+      }
     }).catch(function(){});
 })();
 </script>
