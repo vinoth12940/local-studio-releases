@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local Studio for Mac</title>
+<meta name="description" content="A private AI studio that runs on your Mac. Chat, code, talk, search your files and make images with open models.">
+<link rel="icon" href="assets/logo.png">
+<style>
+:root{--bg:#faf8f5;--fg:#1c1917;--muted:#6b645c;--card:#fff;--line:#e7e2db;--brand:#c2410c;--brand-fg:#fff}
+@media (prefers-color-scheme:dark){:root{--bg:#161412;--fg:#f4f1ec;--muted:#a39b91;--card:#201d1a;--line:#33302b;--brand:#ea6a2c;--brand-fg:#1a0d05}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 -apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,system-ui,sans-serif}
+main{max-width:960px;margin:0 auto;padding:56px 16px 72px}
+header{text-align:center}
+header img.logo{width:104px;height:104px;border-radius:24px}
+h1{font-size:clamp(2rem,6vw,3rem);margin:16px 0 8px;letter-spacing:-.02em}
+.lead{font-size:1.15rem;color:var(--muted);max-width:620px;margin:0 auto 28px}
+.btn{display:inline-block;background:var(--brand);color:var(--brand-fg);font-weight:600;text-decoration:none;padding:14px 28px;border-radius:12px;font-size:1.05rem}
+.btn:hover{filter:brightness(1.08)}
+.meta{color:var(--muted);font-size:.9rem;margin-top:12px}
+.meta code{font-size:.8rem;word-break:break-all}
+.hero{margin:44px 0 12px}
+.hero img,.grid img{width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px}
+.card h3{margin:12px 0 4px}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+h2{margin:56px 0 12px;font-size:1.5rem}
+ol,ul{padding-left:1.2rem}
+li{margin:6px 0}
+footer{margin-top:56px;color:var(--muted);font-size:.9rem;text-align:center;border-top:1px solid var(--line);padding-top:20px}
+a{color:var(--brand)}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <img class="logo" src="assets/logo.png" alt="Local Studio app icon">
+  <h1>Local Studio</h1>
+  <p class="lead">A private AI studio that runs on your Mac. Chat, code, talk, search your files and make images with open models. Your chats and files stay on this Mac.</p>
+  <a id="dl" class="btn" href="https://github.com/vinoth12940/local-studio-releases/releases/latest">Download for Mac</a>
+  <div class="meta" id="meta">Apple Silicon (M1 or newer) · macOS 14 or later · signed and notarized by Apple</div>
+</header>
+
+<div class="hero">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/chat-dark.jpg">
+    <img src="assets/chat-light.jpg" alt="Local Studio answering a question from the user's own files">
+  </picture>
+</div>
+
+<h2>What it does</h2>
+<div class="grid">
+  <div class="card"><img src="assets/code.jpg" alt="The Code view" loading="lazy"><h3>Code</h3><p>An explorer, editor and real terminal beside an agent that edits files with diff previews, one-click Undo and runs your tests.</p></div>
+  <div class="card"><img src="assets/voice.jpg" alt="The Voice view" loading="lazy"><h3>Voice</h3><p>Talk hands-free and interrupt any time. Speech is recognized and spoken on this Mac.</p></div>
+  <div class="card"><img src="assets/files.jpg" alt="Search your files" loading="lazy"><h3>Search your files</h3><p>Describe what you're looking for. It finds documents, PDFs, scans, photos and more.</p></div>
+  <div class="card"><img src="assets/images.jpg" alt="The Images view" loading="lazy"><h3>Images</h3><p>Text-to-image with live progress, seeds and a library.</p></div>
+</div>
+
+<h2>Install</h2>
+<ol>
+  <li>Download the DMG above and open it.</li>
+  <li>Drag <b>Local Studio</b> to <b>Applications</b>.</li>
+  <li>Open it and click <b>Install</b>. It sets up the engines: about 3 GB and a few minutes, with no Terminal or Homebrew.</li>
+  <li>Pick a model. Local Studio suggests ones that fit your Mac's memory.</li>
+</ol>
+<p><b>You need:</b> an Apple Silicon Mac, macOS 14 Sonoma or later, 16 GB of memory for small models (32 GB or more for larger ones), and about 3 GB of disk plus 3–25 GB per model.</p>
+
+<h2>Private by design</h2>
+<p>Models run on your Mac. Conversations, documents, the file index and voice audio never leave it.</p>
+
+<footer>
+  <a href="https://github.com/vinoth12940/local-studio-releases/releases">All releases</a> ·
+  <a href="https://github.com/vinoth12940/local-studio-releases/issues">Report a problem</a>
+</footer>
+</main>
+<script>
+(function(){
+  var repo="vinoth12940/local-studio-releases";
+  fetch("https://api.github.com/repos/"+repo+"/releases/latest",{headers:{Accept:"application/vnd.github+json"}})
+    .then(function(r){return r.ok?r.json():null})
+    .then(function(rel){
+      if(!rel||!rel.assets)return;
+      var dmg=rel.assets.filter(function(a){return /\.dmg$/.test(a.name)})[0];
+      if(!dmg)return;
+      document.getElementById("dl").href=dmg.browser_download_url;
+      document.getElementById("dl").textContent="Download "+rel.tag_name+" for Mac";
+      var mb=Math.round(dmg.size/1048576*10)/10;
+      document.getElementById("meta").textContent=dmg.name+" · "+mb+" MB · Apple Silicon · macOS 14 or later · signed and notarized by Apple";
+    }).catch(function(){});
+})();
+</script>
+</body>
+</html>
